@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 #endif
 
 namespace StarterAssets
@@ -12,7 +13,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public bool shoot;
+		public InputValue shoot;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -74,7 +75,7 @@ namespace StarterAssets
 
 		public void ShootInput(bool newShootState)
 		{
-			shoot = newShootState;
+			//shoot = newShootState;
 		}
 
 		private void OnApplicationFocus(bool hasFocus)
