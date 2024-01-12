@@ -43,11 +43,11 @@
                 },
                 {
                     "name": "Shoot",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "c8d8f3f4-a94e-4a59-95a9-3da5a26b6cc0",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": true
                 }
             ],

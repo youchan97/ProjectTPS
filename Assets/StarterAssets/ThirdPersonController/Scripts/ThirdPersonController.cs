@@ -123,8 +123,6 @@ namespace StarterAssets
             }
         }
 
-        private bool isShoot = false;
-        private bool isJump = false;
         private void Awake()
         {
             // get a reference to our main camera
@@ -161,7 +159,6 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-            Shoot();
         }
 
         private void LateUpdate()
@@ -177,22 +174,6 @@ namespace StarterAssets
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
             _animIDShoot = Animator.StringToHash("Shoot");
-        }
-
-        private void Shoot()
-        {
-            Debug.Log(_animIDShoot);
-            if (_hasAnimator && Grounded && !isJump && !isShoot && _input.shoot)
-            {
-                _controller.Move(Vector3.zero);
-                _animator.SetBool(_animIDShoot, true);
-                isShoot = true;
-            }
-        }
-
-        private void EndShoot()
-        {
-            isShoot = false;
         }
 
         private void GroundedCheck()
@@ -287,9 +268,6 @@ namespace StarterAssets
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            if (isShoot)
-                return;
-
             // move the player
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
@@ -314,7 +292,6 @@ namespace StarterAssets
                 {
                     _animator.SetBool(_animIDJump, false);
                     _animator.SetBool(_animIDFreeFall, false);
-                    isJump = false;
                 }
 
                 // stop our velocity dropping infinitely when grounded
@@ -333,7 +310,6 @@ namespace StarterAssets
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);
-                        isJump = true;
                     }
                 }
 

@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7c8909ba91626444c88c385129b9962f, type: 2}
+    - target: {fileID: 9546546, guid: 909654a14333d03468df739ef2d1679f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1714505194, guid: 909654a14333d03468df739ef2d1679f, type: 3}
       propertyPath: CinemachineCameraTarget
       value: 
