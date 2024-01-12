@@ -40,7 +40,9 @@ public class IdleState : State
         if(player.sa.sprint)
             return new SprintState(player);
         if(shootAction.triggered)
+        {
             return new ShootState(player);
+        }
         return this;
     }
 }
@@ -115,9 +117,15 @@ public class ShootState : State
     public override State InputState()
     {
         Debug.Log("≈¡");
-        player.sa.move = Vector2.zero;
-        if(shootAction.triggered == false)
+        if (Input.GetMouseButton(0))
         {
+            player.transform.forward = player.cam.transform.forward;
+            player.sa.move = Vector2.zero;
+            player.anim.SetBool("IsShoot", true);
+        }
+        if (Input.GetMouseButtonUp(0)) 
+        {
+            player.anim.SetBool("IsShoot", false);
             return new IdleState(player);
         }
         return this;

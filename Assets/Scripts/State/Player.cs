@@ -8,15 +8,17 @@ public class Player : MonoBehaviour
 {
     private State curState;
     public PlayerInput playerInput;
-    public Vector3 pos;
     public StarterAssetsInputs sa;
     public ThirdPersonController tpController;
+    public Animator anim;
+    public GameObject cam;
     public bool isShoot;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         sa = GetComponent<StarterAssetsInputs>();
         tpController = GetComponent<ThirdPersonController>();
+        anim = GetComponent<Animator>();
     }
     private void Start()
     {
