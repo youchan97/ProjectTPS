@@ -13,15 +13,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public TMP_Dropdown setNumPlayerDropDown;      // 최대 인원 설정
 
+    public Button createCharButton;                // 캐릭터만들기
     public Button createRoomButton;                // 방만들기
     public Button randomRoomButton;                // 랜덤방 입장
     public Button codeRoomButton;                  // 코드로 방 입장
 
-    public Button settingButton;                   // 옵션 버튼
-    public Button ExitButton;                      // 나가기 버튼
+
+    public GameObject nickSetCanvers;
 
 
-    public static string nick;
     void Start()
     {
         Debug.Log("서버 연결 시도.");
@@ -29,24 +29,30 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    public static string nick;
     #region 버튼 함수
-    public void CreateRoom()
+    public void CreateChar()
     {
         nick = nickNameInput.text;
+
         if (nick.Length > 0)
         {
             PhotonNetwork.LocalPlayer.NickName = nick; // 현재 플레이어 닉네임
-            // 드롭다운에서 선택한 인원수
-            byte maxPlayers = byte.Parse(setNumPlayerDropDown.options[setNumPlayerDropDown.value].text); // 드롭다운에서 값 얻어오기.
-
-            RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = maxPlayers;
-            PhotonNetwork.CreateRoom(null, roomOptions);
+            nickSetCanvers.SetActive(false);
         }
         else
         {
             Debug.Log("닉네임을 설정하세요");
         }
+    }
+
+    public void CreateRoom()
+    {                                                   
+        byte maxPlayers = byte.Parse(setNumPlayerDropDown.options[setNumPlayerDropDown.value].text); // 드롭다운에서 값 얻어오기.
+
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = maxPlayers; // 드롭다운에서 선택한 인원수
+        PhotonNetwork.CreateRoom(null, roomOptions);
     }
     public void RandomRoom()
     {
