@@ -8,8 +8,10 @@ using Photon.Realtime;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
+    public static PhotonManager Instance = null;
     public TMP_InputField nickNameInput;           // 닉네임 입력
     public TMP_InputField roomCodeInput;           // 방코드 입력
+    public TMP_InputField roomNameInput;           // 방이름
 
     public TMP_Dropdown setNumPlayerDropDown;      // 최대 인원 설정
 
@@ -18,9 +20,17 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public Button randomRoomButton;                // 랜덤방 입장
     public Button codeRoomButton;                  // 코드로 방 입장
 
-
     public GameObject nickSetCanvers;
 
+    public RoomListUI roomListUI;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(Instance);
+    }
 
     void Start()
     {
@@ -47,12 +57,22 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
 
     public void CreateRoom()
-    {                                                   
-        byte maxPlayers = byte.Parse(setNumPlayerDropDown.options[setNumPlayerDropDown.value].text); // 드롭다운에서 값 얻어오기.
+    {
+        if (roomNameInput.text.Length > 0)
+        {
+            byte maxPlayers = byte.Parse(setNumPlayerDropDown.options[setNumPlayerDropDown.value].text); // 드롭다운에서 값 얻어오기.
 
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = maxPlayers; // 드롭다운에서 선택한 인원수
-        PhotonNetwork.CreateRoom(null, roomOptions);
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = maxPlayers; // 드롭다운에서 선택한 인원수
+            PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);//방이름과 인원수
+            roomListUI.AddRoom(maxPlayers, roomNameInput.text);
+            ButtonManager.Instance.RoomOpenButton();
+        }
+        else
+        {
+            Debug.Log("방 이름을 설정하세요");
+        }
+
     }
     public void RandomRoom()
     {
@@ -104,7 +124,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log(PhotonNetwork.CurrentRoom.Name + "방에 들어옴");
+        Debug.Log(PhotonNetwork.CurrentRoom.Name + "이름의 방에 들어옴");
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + "이 방에 들어왔음");
     }
     #endregion

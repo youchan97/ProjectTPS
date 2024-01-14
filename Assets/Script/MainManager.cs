@@ -27,7 +27,6 @@ public class MainManager : MonoBehaviourPunCallbacks
     {
         image.GetComponent<Image>().sprite = characterImg[0];        
     }
-
     public void ArrowCilck()
     {
         CharSelectNum++;
