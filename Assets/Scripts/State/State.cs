@@ -1,3 +1,4 @@
+using Cinemachine;
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ public class State
     public Player player;
     public InputAction shootAction;
     public StarterAssetsInputs sa;
+    public static float time = 0;
 
     public State(Player player)
     {
@@ -110,18 +112,23 @@ public class SprintState : State
 
 public class ShootState : State
 {
+    
+    
     public ShootState(Player player) : base(player)
     {
     }
 
     public override State InputState()
     {
-        Debug.Log("≈¡");
-        if (Input.GetMouseButton(0))
+        time += Time.deltaTime;
+        if (Input.GetMouseButton(0) && time > 0.15f)
         {
+            Debug.Log("≈¡");
             player.transform.forward = player.cam.transform.forward;
             player.sa.move = Vector2.zero;
             player.anim.SetBool("IsShoot", true);
+            player.playerGun.Shoot();
+            time = 0;
         }
         if (Input.GetMouseButtonUp(0)) 
         {
