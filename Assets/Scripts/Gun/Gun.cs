@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Gun : MonoBehaviour, IAttackable
+public class Gun : MonoBehaviour, IAttackable, IGetable
 {
     [SerializeField]
     protected int damage;//공격력
-    [SerializeField]
-    protected float attackRange;//공격 거리
+    public float attackRange;//공격 거리
     [SerializeField]
     protected int bulletCount;//총알
     [SerializeField]
     protected int maxBulletCount;//최대 보유 총알
     protected int remainBulletCount;//여분 총알
+    public GunStrategy gunStrategy;
+    public GameObject bulletLine;
 
     public int BulletCount
     {
@@ -57,5 +58,10 @@ public class Gun : MonoBehaviour, IAttackable
         {
             Debug.Log("안 맞았다");
         }
+    }
+
+    public void Get()
+    {
+        ;
     }
 }

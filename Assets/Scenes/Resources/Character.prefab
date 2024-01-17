@@ -1347,6 +1347,7 @@ GameObject:
   - component: {fileID: 459198}
   - component: {fileID: 3310046}
   - component: {fileID: 2393136}
+  - component: {fileID: 8240674040030036357}
   m_Layer: 6
   m_Name: weapon_assault_rifle_A
   m_TagString: Untagged
@@ -1420,6 +1421,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8240674040030036357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5fa521acc30e74abfad4b8c9409fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  attackRange: 10
+  bulletCount: 0
+  maxBulletCount: 0
+  bulletLine: {fileID: 1671985615130571404}
 --- !u!1 &135028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2731,9 +2749,11 @@ MonoBehaviour:
   tpController: {fileID: 0}
   anim: {fileID: 0}
   cam: {fileID: 8944336656616134552}
-  zoomCam: {fileID: 0}
+  rifleZoomCam: {fileID: 0}
+  sniperZoomCam: {fileID: 0}
   isShoot: 0
   playerGun: {fileID: 0}
+  playerHp: 0
 --- !u!143 &1714505196
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3326,7 +3346,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7026838448054422812}
-  - component: {fileID: 4147747638516055112}
   m_Layer: 6
   m_Name: Shoot
   m_TagString: Untagged
@@ -3349,20 +3368,6 @@ Transform:
   m_Father: {fileID: 459198}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4147747638516055112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671985615130571404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe55718e1ecd8e44a6036a180670bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  attackRange: 10
 --- !u!1001 &1135850442
 PrefabInstance:
   m_ObjectHideFlags: 0

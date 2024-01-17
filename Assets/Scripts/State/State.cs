@@ -41,10 +41,10 @@ public class IdleState : State
             return new JumpState(player);
         if(player.sa.sprint)
             return new SprintState(player);
-        if(shootAction.triggered)
+        /*if(shootAction.triggered)
         {
             return new ShootState(player);
-        }
+        }*/
         return this;
     }
 }
@@ -64,8 +64,8 @@ public class MoveState : State
             return new JumpState(player);
         if (player.sa.sprint)
             return new SprintState(player);
-        if (shootAction.triggered)
-            return new ShootState(player);
+        /*if (shootAction.triggered)
+            return new ShootState(player);*/
         return this;
     }
 }
@@ -120,7 +120,7 @@ public class ShootState : State
 
     public override State InputState()
     {
-        time += Time.deltaTime;
+        /*time += Time.deltaTime;
         if (Input.GetMouseButton(0) && time > 0.15f)
         {
             Debug.Log("≈¡");
@@ -134,7 +134,8 @@ public class ShootState : State
         {
             player.anim.SetBool("IsShoot", false);
             return new IdleState(player);
-        }
+        }*/
+        player.playerGun.gunStrategy.Shoot();
         return this;
     }
 }

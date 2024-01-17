@@ -9,13 +9,14 @@ using Photon.Pun;
 
 public class Player : MonoBehaviour, IHitable
 {
-    private State curState;
+    public State curState;
     public PlayerInput playerInput;
     public StarterAssetsInputs sa;
     public ThirdPersonController tpController;
     public Animator anim;
     public GameObject cam;
-    public CinemachineVirtualCamera zoomCam;
+    public CinemachineVirtualCamera rifleZoomCam;
+    public CinemachineVirtualCamera sniperZoomCam;
     public bool isShoot;
     public Gun playerGun;
     public float playerHp;
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour, IHitable
 
     public void EndShoot()
     {
+        anim.SetBool("IsShoot", false);
         playerGun.BulletCount--;
     }
 

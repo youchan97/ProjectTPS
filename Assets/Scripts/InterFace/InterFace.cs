@@ -13,6 +13,11 @@ public interface IAttackable
     void Attack(IHitable hitable);
 }
 
+public interface IGetable
+{
+    void Get();
+}
+
 
 
 

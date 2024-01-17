@@ -42,13 +42,40 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
+                    "name": "AutoShoot",
                     "type": "PassThrough",
                     "id": "c8d8f3f4-a94e-4a59-95a9-3da5a26b6cc0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Button",
+                    "id": "8ede91c6-371e-4545-bec4-8f3395386b1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "7c55f21e-3f19-44a6-b587-7bf2312a433f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeShoot",
+                    "type": "Button",
+                    "id": "b8b0bdc0-918e-4bb2-990a-3e3427b0dc8f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -257,7 +284,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
+                    "action": "AutoShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95e369d6-3ab8-4417-990d-e0350e2a177d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "096446dc-cdd2-44b6-924b-045583b25f53",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66fb4655-be3e-43bc-958c-014aabad353e",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ChangeShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
