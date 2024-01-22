@@ -60,8 +60,8 @@ public class Gun : MonoBehaviour, IAttackable, IGetable
         }
     }
 
-    public void Get()
+    public void Get(Player player)
     {
-        ;
+        this.gameObject.transform.parent = player.hasGunObject.transform;
     }
 }

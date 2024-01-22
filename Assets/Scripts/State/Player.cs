@@ -20,7 +20,16 @@ public class Player : MonoBehaviour, IHitable
     public bool isShoot;
     public Gun playerGun;
     public float playerHp;
-    
+    public float playerMaxHp;
+    public float getAbleRadius;
+    public static readonly int getLayer = 1 << 7;
+    public GameObject hasGunObject;
+    InputAction farmAction;
+    public Collider[] cols;
+
+    public List<HealItem> healItems;
+
+
 
     public float Hp
     { 
@@ -33,6 +42,8 @@ public class Player : MonoBehaviour, IHitable
                 Destroy(gameObject);
                 PhotonNetwork.LeaveRoom();
             }
+            else if (playerHp >= playerMaxHp)
+                playerHp = playerMaxHp;
                 
         }
     }
@@ -44,6 +55,7 @@ public class Player : MonoBehaviour, IHitable
         sa = GetComponent<StarterAssetsInputs>();
         tpController = GetComponent<ThirdPersonController>();
         anim = GetComponent<Animator>();
+        farmAction = playerInput.actions["Farm"];
     }
     private void Start()
     {
@@ -54,6 +66,12 @@ public class Player : MonoBehaviour, IHitable
     private void Update()
     {
         curState = curState.InputState();
+        //Debug.DrawRay(transform.position + (Vector3.up * 1.8f), (transform.position - cam.transform.position).normalized, Color.red);
+        cols = Physics.OverlapSphere(transform.position, 5, getLayer);
+        if(farmAction.triggered)
+        {
+            Farm();
+        }
     }
 
     public void EndShoot()
@@ -66,5 +84,18 @@ public class Player : MonoBehaviour, IHitable
     {
         //PhotonNetwork.Instantiate("Blood");
         Hp -= damage;
+    }
+
+    public void Farm()
+    {       
+        if (cols.Length > 0)
+        {
+            if (cols[0].TryGetComponent(out IGetable getable))
+                getable.Get(this);
+        }
+        else
+        {
+            Debug.Log("주울게 없음");
+        }
     }
 }

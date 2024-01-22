@@ -64,7 +64,7 @@ public class MoveState : State
             return new JumpState(player);
         if (player.sa.sprint)
             return new SprintState(player);
-        /*if (shootAction.triggered)
+       /* if (player.playerGun != null)
             return new ShootState(player);*/
         return this;
     }

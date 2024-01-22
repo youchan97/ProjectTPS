@@ -15,7 +15,7 @@ public interface IAttackable
 
 public interface IGetable
 {
-    void Get();
+    void Get(Player player);
 }
 
 
