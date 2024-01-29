@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
+using UnityEditor;
 
 public class Player : MonoBehaviour, IHitable
 {
@@ -91,10 +92,15 @@ public class Player : MonoBehaviour, IHitable
         if (cols.Length > 0)
         {
             if (cols[0].TryGetComponent(out IGetable getable))
+            {
                 getable.Get(this);
+                playerGun.gameObject.transform.position = hasGunObject.transform.position;
+                playerGun.gameObject.transform.rotation = hasGunObject.transform.rotation;
+            }
         }
         else
         {
+            Debug.Log("asdf");
             Debug.Log("주울게 없음");
         }
     }

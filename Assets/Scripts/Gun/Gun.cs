@@ -63,5 +63,7 @@ public class Gun : MonoBehaviour, IAttackable, IGetable
     public void Get(Player player)
     {
         this.gameObject.transform.parent = player.hasGunObject.transform;
+        this.gameObject.GetComponent<MeshCollider>().enabled = false;
+        player.playerGun = this;
     }
 }
