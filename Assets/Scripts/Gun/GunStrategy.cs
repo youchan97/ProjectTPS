@@ -7,22 +7,13 @@ using UnityEngine.InputSystem;
 public abstract class GunStrategy
 {
     protected Gun gun;
-    protected Player ownerPlayer;
+    public Player ownerPlayer;
     RaycastHit hit;
-    protected InputAction zoomAction;
-    protected InputAction changeShootAction;
-    protected InputAction autoShootAction;
-    protected InputAction shootAction;
     public abstract void Shoot();
 
     public GunStrategy(Gun gun)
     {
         this.gun = gun;
-        ownerPlayer = gun.GetComponentInParent<Player>();
-        zoomAction = ownerPlayer.playerInput.actions["Zoom"];
-        changeShootAction = ownerPlayer.playerInput.actions["ChangeShoot"];
-        shootAction = ownerPlayer.playerInput.actions["Shoot"];
-        autoShootAction = ownerPlayer.playerInput.actions["AutoShoot"];
     }
 
     public virtual void ClickShoot()
@@ -30,10 +21,13 @@ public abstract class GunStrategy
         Physics.Raycast(gun.bulletLine.transform.position,
             -(gun.bulletLine.transform.right), out hit, gun.attackRange);
         ownerPlayer.anim.SetBool("IsShoot", true);
-        if (hit.transform.gameObject.GetComponent<IHitable>() != null)
-            gun.Attack(hit.transform.gameObject.GetComponent<IHitable>());
+        GameObject bulletEffect = PoolManager.Instance.UseObject();
+        bulletEffect.transform.position = hit.transform.position;
+        /*if (hit.transform.gameObject.GetComponent<IHitable>() != null)
+            Debug.Log("맞았다");
+        //gun.Attack(hit.transform.gameObject.GetComponent<IHitable>());
         else
-            Debug.Log("안맞았다");
+            Debug.Log("안맞았다");*/
     }
 }
 
@@ -100,11 +94,11 @@ public class RifleStrategy : GunStrategy
     }
     public override void Shoot()
     {
-        if(zoomAction.triggered)
+        if(ownerPlayer.zoomAction.triggered)
         {
             Zoom();
         }
-        if (changeShootAction.triggered)
+        if (ownerPlayer.changeShootAction.triggered)
         {
             ChangeShoot();
         }
@@ -115,7 +109,7 @@ public class RifleStrategy : GunStrategy
         }
         else
         {
-            if(shootAction.triggered)
+            if(ownerPlayer.shootAction.triggered)
             {
                 base.ClickShoot();
             }

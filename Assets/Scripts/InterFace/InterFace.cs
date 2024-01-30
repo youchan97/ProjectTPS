@@ -18,9 +18,8 @@ public interface IGetable
     void Get(Player player);
 }
 
-
-
-
-public class InterFace : MonoBehaviour
+public interface IThrowable
 {
+    void Throw();
 }
+

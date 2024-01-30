@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Gun : MonoBehaviour, IAttackable, IGetable
+public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
 {
     [SerializeField]
     protected int damage;//공격력
@@ -41,10 +41,10 @@ public class Gun : MonoBehaviour, IAttackable, IGetable
 
     private void Update()
     {
-        Debug.DrawRay(this.gameObject.transform.position, -(this.gameObject.transform.right), Color.red);
+        Debug.DrawRay(bulletLine.transform.position, -(bulletLine.transform.right), Color.red);
     }
 
-    public void Shoot()
+    /*public void Shoot()
     {
         RaycastHit hit;
         Physics.Raycast(this.gameObject.transform.position,
@@ -58,12 +58,18 @@ public class Gun : MonoBehaviour, IAttackable, IGetable
         {
             Debug.Log("안 맞았다");
         }
-    }
+    }*/
 
     public void Get(Player player)
     {
         this.gameObject.transform.parent = player.hasGunObject.transform;
         this.gameObject.GetComponent<MeshCollider>().enabled = false;
         player.playerGun = this;
+        gunStrategy.ownerPlayer = this.gameObject.GetComponentInParent<Player>();
+    }
+
+    public void Throw()
+    {
+        this.gameObject.GetComponent<MeshCollider>().enabled=true;
     }
 }

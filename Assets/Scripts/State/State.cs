@@ -9,14 +9,12 @@ using UnityEngine.TextCore.Text;
 public class State
 {
     public Player player;
-    public InputAction shootAction;
     public StarterAssetsInputs sa;
     public static float time = 0;
 
     public State(Player player)
     {
         this.player = player;
-        shootAction = player.playerInput.actions["Shoot"];
     }
 
 
@@ -41,10 +39,10 @@ public class IdleState : State
             return new JumpState(player);
         if(player.sa.sprint)
             return new SprintState(player);
-        /*if(shootAction.triggered)
+        if (player.shootAction.triggered && player.playerGun != null)
         {
             return new ShootState(player);
-        }*/
+        }
         return this;
     }
 }
@@ -64,8 +62,10 @@ public class MoveState : State
             return new JumpState(player);
         if (player.sa.sprint)
             return new SprintState(player);
-       /* if (player.playerGun != null)
-            return new ShootState(player);*/
+        if (player.shootAction.triggered && player.playerGun != null)
+        {
+            return new ShootState(player);
+        }
         return this;
     }
 }
@@ -135,7 +135,10 @@ public class ShootState : State
             player.anim.SetBool("IsShoot", false);
             return new IdleState(player);
         }*/
-        player.playerGun.gunStrategy.Shoot();
+        if(player.shootAction.triggered)
+        {
+            player.playerGun.gunStrategy.Shoot();
+        }
         return this;
     }
 }

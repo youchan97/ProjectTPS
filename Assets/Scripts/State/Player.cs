@@ -25,8 +25,14 @@ public class Player : MonoBehaviour, IHitable
     public float getAbleRadius;
     public static readonly int getLayer = 1 << 7;
     public GameObject hasGunObject;
-    InputAction farmAction;
     public Collider[] cols;
+
+
+    public InputAction zoomAction;
+    public InputAction changeShootAction;
+    public InputAction autoShootAction;
+    public InputAction shootAction;
+    InputAction farmAction;
 
     public List<HealItem> healItems;
 
@@ -51,17 +57,20 @@ public class Player : MonoBehaviour, IHitable
 
     private void Awake()
     {
-        playerGun = GetComponentInChildren<Gun>();
         playerInput = GetComponent<PlayerInput>();
         sa = GetComponent<StarterAssetsInputs>();
         tpController = GetComponent<ThirdPersonController>();
         anim = GetComponent<Animator>();
         farmAction = playerInput.actions["Farm"];
+        zoomAction = playerInput.actions["Zoom"];
+        changeShootAction = playerInput.actions["ChangeShoot"];
+        shootAction = playerInput.actions["Shoot"];
+        autoShootAction = playerInput.actions["AutoShoot"];
     }
     private void Start()
     {
         curState = new IdleState(this);
-        isShoot = curState.shootAction.triggered;
+        isShoot = shootAction.triggered;
     }
 
     private void Update()
@@ -89,7 +98,7 @@ public class Player : MonoBehaviour, IHitable
 
     public void Farm()
     {       
-        if (cols.Length > 0)
+        if (cols.Length > 0 && playerGun == null)
         {
             if (cols[0].TryGetComponent(out IGetable getable))
             {
@@ -98,9 +107,21 @@ public class Player : MonoBehaviour, IHitable
                 playerGun.gameObject.transform.rotation = hasGunObject.transform.rotation;
             }
         }
+        else if(cols.Length > 0 && playerGun != null)
+        {
+            if (cols[0].TryGetComponent(out IGetable getable))
+            {
+                playerGun.gameObject.transform.SetParent(null);
+                playerGun.gameObject.transform.SetLocalPositionAndRotation(new Vector3(this.gameObject.transform.position.x,0.3f, this.gameObject.transform.position.z + 3), this.gameObject.transform.rotation);
+                playerGun.Throw();
+                playerGun = null;
+                getable.Get(this);
+                playerGun.gameObject.transform.position = hasGunObject.transform.position;
+                playerGun.gameObject.transform.rotation = hasGunObject.transform.rotation;
+            }
+        }
         else
         {
-            Debug.Log("asdf");
             Debug.Log("주울게 없음");
         }
     }
