@@ -8,6 +8,4 @@ public class Rifle : Gun
     {
         gunStrategy = new RifleStrategy(this);
     }
-
-
 }

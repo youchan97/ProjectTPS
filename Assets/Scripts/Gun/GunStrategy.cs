@@ -18,11 +18,20 @@ public abstract class GunStrategy
 
     public virtual void ClickShoot()
     {
-        Physics.Raycast(gun.bulletLine.transform.position,
-            -(gun.bulletLine.transform.right), out hit, gun.attackRange);
-        ownerPlayer.anim.SetBool("IsShoot", true);
-        GameObject bulletEffect = PoolManager.Instance.UseObject();
-        bulletEffect.transform.position = hit.transform.position;
+        if(gun.BulletCount > 0)
+        {
+            ownerPlayer.anim.SetBool("IsShoot", true);
+            Transform camTransform = Camera.main.transform;
+            ownerPlayer.transform.forward = camTransform.forward;
+            Physics.Raycast(camTransform.position, camTransform.forward, out hit, gun.attackRange);
+            GameObject bulletEffect = PoolManager.Instance.UseObject();
+            bulletEffect.transform.position = hit.point;
+            gun.BulletCount--;
+        }
+        else
+        {
+            Debug.Log("Åº¾à ¾øÀ½");
+        }
         /*if (hit.transform.gameObject.GetComponent<IHitable>() != null)
             Debug.Log("¸Â¾Ò´Ù");
         //gun.Attack(hit.transform.gameObject.GetComponent<IHitable>());
@@ -112,6 +121,7 @@ public class RifleStrategy : GunStrategy
             if(ownerPlayer.shootAction.triggered)
             {
                 base.ClickShoot();
+                Debug.Log("½ú´Ù");
             }
         }
     }

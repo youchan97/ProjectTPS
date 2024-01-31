@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
 {
@@ -15,6 +16,8 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
     protected int remainBulletCount;//¿©ºÐ ÃÑ¾Ë
     public GunStrategy gunStrategy;
     public GameObject bulletLine;
+    [SerializeField]
+    private Image aim;
 
     public int BulletCount
     {
@@ -22,6 +25,10 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
         set 
         { 
             bulletCount = value;
+            if(bulletCount <= 0)
+            {
+                bulletCount = 0;
+            }
         }
     }
 
@@ -41,7 +48,7 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
 
     private void Update()
     {
-        Debug.DrawRay(bulletLine.transform.position, -(bulletLine.transform.right), Color.red);
+        //Debug.DrawRay(bulletLine.transform.position, -(bulletLine.transform.right), Color.red);
     }
 
     /*public void Shoot()
@@ -65,11 +72,17 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
         this.gameObject.transform.parent = player.hasGunObject.transform;
         this.gameObject.GetComponent<MeshCollider>().enabled = false;
         player.playerGun = this;
+        //aim.enabled = true;
         gunStrategy.ownerPlayer = this.gameObject.GetComponentInParent<Player>();
     }
 
     public void Throw()
     {
         this.gameObject.GetComponent<MeshCollider>().enabled=true;
+    }
+
+    public void ReLoad()
+    {
+        BulletCount = maxBulletCount;
     }
 }

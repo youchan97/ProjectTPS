@@ -150,6 +150,7 @@ MonoBehaviour:
   bulletCount: 0
   maxBulletCount: 0
   bulletLine: {fileID: 819566024279473823}
+  aim: {fileID: 1642155026392083511, guid: ceb5e4cc1832f9346922b619b8055165, type: 3}
 --- !u!64 &-8473961860532381501
 MeshCollider:
   m_ObjectHideFlags: 0

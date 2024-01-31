@@ -8,6 +8,14 @@ using UnityEngine.InputSystem;
 using Photon.Pun;
 using UnityEditor;
 
+/*struct Playerdata
+{
+    public float Hp;
+    public string Name;
+}*/
+
+
+
 public class Player : MonoBehaviour, IHitable
 {
     public State curState;
@@ -26,12 +34,18 @@ public class Player : MonoBehaviour, IHitable
     public static readonly int getLayer = 1 << 7;
     public GameObject hasGunObject;
     public Collider[] cols;
+    //Playerdata data;
 
-
+    [HideInInspector]
     public InputAction zoomAction;
+    [HideInInspector]
     public InputAction changeShootAction;
+    [HideInInspector]
     public InputAction autoShootAction;
+    [HideInInspector]
     public InputAction shootAction;
+    [HideInInspector]
+    public InputAction reloadAction;
     InputAction farmAction;
 
     public List<HealItem> healItems;
@@ -66,6 +80,7 @@ public class Player : MonoBehaviour, IHitable
         changeShootAction = playerInput.actions["ChangeShoot"];
         shootAction = playerInput.actions["Shoot"];
         autoShootAction = playerInput.actions["AutoShoot"];
+        reloadAction = playerInput.actions["Reload"];
     }
     private void Start()
     {
@@ -76,18 +91,26 @@ public class Player : MonoBehaviour, IHitable
     private void Update()
     {
         curState = curState.InputState();
-        //Debug.DrawRay(transform.position + (Vector3.up * 1.8f), (transform.position - cam.transform.position).normalized, Color.red);
         cols = Physics.OverlapSphere(transform.position, 5, getLayer);
         if(farmAction.triggered)
         {
             Farm();
         }
+        if(reloadAction.triggered)
+        {
+            anim.SetTrigger("Reload");
+        }
     }
+
+    public void GunReLoad()
+    {
+        playerGun.ReLoad();
+    }
+
 
     public void EndShoot()
     {
         anim.SetBool("IsShoot", false);
-        playerGun.BulletCount--;
     }
 
     public void Hit(float damage)

@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "f93cd303-d58e-44a2-b2ed-ddf64bf75de9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -289,7 +298,7 @@
                 {
                     "name": "",
                     "id": "ebec7ca9-0294-4dcb-a87e-4b14e458e4f0",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Joystick>/stick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
@@ -338,6 +347,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Farm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d39061e3-144b-44ee-9900-480037d9d960",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
