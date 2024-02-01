@@ -27,6 +27,8 @@ public class Player : MonoBehaviour, IHitable
     public CinemachineVirtualCamera rifleZoomCam;
     public CinemachineVirtualCamera sniperZoomCam;
     public bool isShoot;
+    public bool isSit;
+    public bool isProne;
     public Gun playerGun;
     public float playerHp;
     public float playerMaxHp;
@@ -47,6 +49,8 @@ public class Player : MonoBehaviour, IHitable
     [HideInInspector]
     public InputAction reloadAction;
     InputAction farmAction;
+    InputAction sitAction;
+    InputAction proneAction;
 
     public List<HealItem> healItems;
 
@@ -81,10 +85,14 @@ public class Player : MonoBehaviour, IHitable
         shootAction = playerInput.actions["Shoot"];
         autoShootAction = playerInput.actions["AutoShoot"];
         reloadAction = playerInput.actions["Reload"];
+        sitAction = playerInput.actions["Sit"];
+        proneAction = playerInput.actions["Prone"];
     }
     private void Start()
     {
         curState = new IdleState(this);
+        isSit = false;
+        isProne = false;
         isShoot = shootAction.triggered;
     }
 
@@ -94,11 +102,22 @@ public class Player : MonoBehaviour, IHitable
         cols = Physics.OverlapSphere(transform.position, 5, getLayer);
         if(farmAction.triggered)
         {
+            anim.SetTrigger("Farm");
             Farm();
         }
         if(reloadAction.triggered)
         {
             anim.SetTrigger("Reload");
+        }
+        if(sitAction.triggered)
+        {
+            isSit = isSit? false : true;
+            anim.SetBool("IsSit", isSit);
+        }
+        if(proneAction.triggered)
+        {
+            isProne = isProne? false : true;
+            anim.SetBool("IsProne", isProne);
         }
     }
 

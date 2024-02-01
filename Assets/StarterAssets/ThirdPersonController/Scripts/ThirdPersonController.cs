@@ -111,6 +111,8 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        Player player;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -147,6 +149,7 @@ namespace StarterAssets
 
             AssignAnimationIDs();
 
+            player = GetComponent<Player>();
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
@@ -301,7 +304,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f && !player.isProne && !player.isSit)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);

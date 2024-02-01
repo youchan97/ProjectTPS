@@ -21,11 +21,6 @@ public class PoolManager : MonoBehaviour
         InitObjectPool();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void InitObjectPool()
     {
         objPools = new List<GameObject> ();

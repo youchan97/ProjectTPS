@@ -2649,6 +2649,8 @@ MonoBehaviour:
   rifleZoomCam: {fileID: 0}
   sniperZoomCam: {fileID: 0}
   isShoot: 0
+  isSit: 0
+  isProne: 0
   playerGun: {fileID: 0}
   playerHp: 0
   playerMaxHp: 0
@@ -2687,6 +2689,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: c06d69b5-f2ab-4c49-8793-4cd2bb802fba
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  reloadAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9ced5f73-509a-4b59-bef7-42464b872644
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -3370,7 +3381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.96000004
+      value: 0.76000005
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y

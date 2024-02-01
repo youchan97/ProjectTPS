@@ -20,9 +20,9 @@ public abstract class GunStrategy
     {
         if(gun.BulletCount > 0)
         {
-            ownerPlayer.anim.SetBool("IsShoot", true);
             Transform camTransform = Camera.main.transform;
             ownerPlayer.transform.forward = camTransform.forward;
+            ownerPlayer.anim.SetBool("IsShoot", true);
             Physics.Raycast(camTransform.position, camTransform.forward, out hit, gun.attackRange);
             GameObject bulletEffect = PoolManager.Instance.UseObject();
             bulletEffect.transform.position = hit.point;
