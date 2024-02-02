@@ -26,6 +26,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public RoomListUI roomListUI;
 
+    public static string nick;
+    public static int characterNum;
+
     private void Awake()
     {
         if (Instance == null)
@@ -44,7 +47,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    public static string nick;
     #region 버튼 함수
     public void CreateChar()
     {
@@ -54,6 +56,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.LocalPlayer.NickName = nick; // 현재 플레이어 닉네임
             nickSetCanvers.SetActive(false);
+            characterNum = MainManager.CharSelectNum; //선택한 캐릭터 번호 저장
         }
         else
         {

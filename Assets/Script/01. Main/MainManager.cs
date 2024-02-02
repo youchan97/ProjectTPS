@@ -12,8 +12,8 @@ public class MainManager : MonoBehaviourPunCallbacks
     public Sprite currentImg;
     public Sprite[] characterImg;
 
-    int charSelectNum;
-    public int CharSelectNum
+    static int charSelectNum;
+    public static int CharSelectNum
     { 
         get { return charSelectNum; }
         set 

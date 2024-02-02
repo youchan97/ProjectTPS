@@ -5586,60 +5586,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228018026}
   m_CullTransparentMesh: 1
---- !u!1 &1278152850
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1278152852}
-  - component: {fileID: 1278152851}
-  m_Layer: 0
-  m_Name: PhotonManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1278152851
+--- !u!114 &1278152851 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5820716584600982241, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+  m_PrefabInstance: {fileID: 5820716583461503602}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278152850}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbe0d94ba62e00a4e93df774b119a179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickNameInput: {fileID: 618659686}
-  roomCodeInput: {fileID: 1504873885}
-  roomNameInput: {fileID: 61750473}
-  setNumPlayerDropDown: {fileID: 1996545866}
-  createCharButton: {fileID: 0}
-  createRoomButton: {fileID: 0}
-  randomRoomButton: {fileID: 0}
-  codeRoomButton: {fileID: 0}
-  nickSetCanvers: {fileID: 1319118505}
-  roomListUI: {fileID: 1774157885}
---- !u!4 &1278152852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278152850}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1363.92, y: 592.56, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1319118505
 GameObject:
   m_ObjectHideFlags: 0
@@ -6050,7 +6007,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 500, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1340744740
@@ -9200,3 +9157,84 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &5820716583461503602
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5820716584600982240, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_Name
+      value: PhotonManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982241, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: roomListUI
+      value: 
+      objectReference: {fileID: 1774157885}
+    - target: {fileID: 5820716584600982241, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: nickNameInput
+      value: 
+      objectReference: {fileID: 618659686}
+    - target: {fileID: 5820716584600982241, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: roomCodeInput
+      value: 
+      objectReference: {fileID: 1504873885}
+    - target: {fileID: 5820716584600982241, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: roomNameInput
+      value: 
+      objectReference: {fileID: 61750473}
+    - target: {fileID: 5820716584600982241, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: nickSetCanvers
+      value: 
+      objectReference: {fileID: 1319118505}
+    - target: {fileID: 5820716584600982241, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: setNumPlayerDropDown
+      value: 
+      objectReference: {fileID: 1996545866}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1363.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 592.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820716584600982246, guid: 5244df03538beba4aac8d1724a821626, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5244df03538beba4aac8d1724a821626, type: 3}
