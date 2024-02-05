@@ -123,7 +123,7 @@ public class Player : MonoBehaviour, IHitable
 
     public void GunReLoad()
     {
-        playerGun.ReLoad();
+        playerGun.BulletCount = playerGun.maxBulletCount;
     }
 
 

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
-public class State
+public abstract class State
 {
     public Player player;
     public StarterAssetsInputs sa;

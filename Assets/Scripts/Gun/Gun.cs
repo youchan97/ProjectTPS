@@ -11,8 +11,7 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
     public float attackRange;//공격 거리
     [SerializeField]
     protected int bulletCount;//총알
-    [SerializeField]
-    protected int maxBulletCount;//최대 보유 총알
+    public int maxBulletCount;//최대 보유 총알
     protected int remainBulletCount;//여분 총알
     public GunStrategy gunStrategy;
     public GameObject bulletLine;
@@ -73,7 +72,7 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
         this.gameObject.GetComponent<MeshCollider>().enabled = false;
         player.playerGun = this;
         //aim.enabled = true;
-        gunStrategy.ownerPlayer = this.gameObject.GetComponentInParent<Player>();
+        gunStrategy.ownerPlayer = player;
     }
 
     public void Throw()
