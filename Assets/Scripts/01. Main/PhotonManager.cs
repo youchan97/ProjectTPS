@@ -56,7 +56,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.LocalPlayer.NickName = nick; // 현재 플레이어 닉네임
             nickSetCanvers.SetActive(false);
-            characterNum = MainManager.CharSelectNum; //선택한 캐릭터 번호 저장
+            characterNum = CharNum.CharSelectNum; //선택한 캐릭터 번호 저장
         }
         else
         {
@@ -137,7 +137,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log(PhotonNetwork.CurrentRoom.Name + "이름의 방에 들어옴" + "\r\n" +
                   PhotonNetwork.LocalPlayer.NickName + "이 방에 들어왔음");
-        //SceneManager.LoadScene("02. Lobby");
+        SceneManager.LoadScene("02. Lobby");
+
     }
     public override void OnJoinedLobby() => Debug.Log("로비에 연결되었습니다.");
     #endregion

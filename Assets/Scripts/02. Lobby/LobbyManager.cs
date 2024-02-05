@@ -1,24 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class LobbyManager : MonoBehaviour
 {
     public GameObject[] lobbyCharSlot;
     public Sprite[] charImg;
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        for (int i = 0; i < lobbyCharSlot.Length; i++)
+        {
+            lobbyCharSlot[i].GetComponent<Image>().sprite = null;
+        }
+    }
     void Start()
     {
-        
+        ImageMatching();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ImageMatching()
     {
-        
-    }
-    void ImageMatching()
-    {
-
+        int num = 0;
+        if (lobbyCharSlot[num].GetComponent<Image>().sprite == null)
+        {
+            lobbyCharSlot[num].GetComponent<Image>().sprite = charImg[CharNum.CharSelectNum];
+        }
+        else
+        {
+            num++;
+            ImageMatching();
+        }
     }
 }
