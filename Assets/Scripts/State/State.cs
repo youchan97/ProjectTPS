@@ -11,26 +11,22 @@ public abstract class State
     public Player player;
     public StarterAssetsInputs sa;
     public static float time = 0;
-
     public State(Player player)
     {
         this.player = player;
     }
-
-
-    public virtual State InputState()
+    public virtual State UpdateState()
     {
         return this;
     }
 }
-
 public class IdleState : State
 {
     public IdleState(Player player) : base(player)
     {
     }
 
-    public override State InputState()
+    public override State UpdateState()
     {
         Debug.Log("기본");
         if (player.sa.move != Vector2.zero)
@@ -46,14 +42,13 @@ public class IdleState : State
         return this;
     }
 }
-
 public class MoveState : State
 {
     public MoveState(Player player) : base(player)
     {
     }
 
-    public override State InputState()
+    public override State UpdateState()
     {
         Debug.Log("무브");
         if(player.sa.move == Vector2.zero)
@@ -69,14 +64,13 @@ public class MoveState : State
         return this;
     }
 }
-
 public class JumpState : State
 {
     public JumpState(Player player) : base(player)
     {
     }
 
-    public override State InputState()
+    public override State UpdateState()
     {
         Debug.Log("점프");
         if (!player.sa.jump && player.tpController.Grounded)
@@ -95,7 +89,7 @@ public class SprintState : State
     {
     }
 
-    public override State InputState()
+    public override State UpdateState()
     {
         Debug.Log("달리기");
         if(!player.sa.sprint)
@@ -118,7 +112,7 @@ public class ShootState : State
     {
     }
 
-    public override State InputState()
+    public override State UpdateState()
     {
         if(player.shootAction.triggered)
         {

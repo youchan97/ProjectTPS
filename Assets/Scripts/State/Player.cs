@@ -98,7 +98,7 @@ public class Player : MonoBehaviour, IHitable
 
     private void Update()
     {
-        curState = curState.InputState();
+        curState = curState.UpdateState();
         cols = Physics.OverlapSphere(transform.position, 5, getLayer);
         if(farmAction.triggered)
         {

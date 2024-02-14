@@ -39,7 +39,6 @@ public abstract class GunStrategy
             Debug.Log("안맞았다");*/
     }
 }
-
 public class PistolStrategy : GunStrategy
 {
     public PistolStrategy(Gun gun) : base(gun)
@@ -52,7 +51,6 @@ public class PistolStrategy : GunStrategy
             base.ClickShoot();
     }
 }
-
 public class ShotGunStrategy : GunStrategy
 {
     public ShotGunStrategy(Gun gun) : base(gun)
@@ -65,7 +63,6 @@ public class ShotGunStrategy : GunStrategy
             base.ClickShoot();
     }
 }
-
 public class RifleStrategy : GunStrategy
 {
     bool isZoom = false;
@@ -126,7 +123,6 @@ public class RifleStrategy : GunStrategy
         }
     }
 }
-
 public class SnipeStrategy : GunStrategy
 {
     bool isZoom = false;
