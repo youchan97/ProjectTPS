@@ -73,7 +73,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = maxPlayers; // 드롭다운에서 선택한 인원수
             PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);//방이름과 인원수
-            roomListUI.AddRoom(maxPlayers, roomNameInput.text);
+            roomListUI.PV.RPC("AddRoom", RpcTarget.All, maxPlayers, roomNameInput.text);
             ButtonManager.Instance.RoomOpenButton();
         }
         else
@@ -137,7 +137,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log(PhotonNetwork.CurrentRoom.Name + "이름의 방에 들어옴" + "\r\n" +
                   PhotonNetwork.LocalPlayer.NickName + "이 방에 들어왔음");
-        SceneManager.LoadScene("02. Lobby");
+       // SceneManager.LoadScene("02. Lobby");
 
     }
     public override void OnJoinedLobby() => Debug.Log("로비에 연결되었습니다.");

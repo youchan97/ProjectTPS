@@ -1516,6 +1516,7 @@ GameObject:
   - component: {fileID: 362444928}
   - component: {fileID: 362444930}
   - component: {fileID: 362444929}
+  - component: {fileID: 362444931}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -1583,6 +1584,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &362444931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362444927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &390265191
 GameObject:
   m_ObjectHideFlags: 0
@@ -7378,6 +7395,8 @@ GameObject:
   - component: {fileID: 1774157883}
   - component: {fileID: 1774157882}
   - component: {fileID: 1774157885}
+  - component: {fileID: 1774157887}
+  - component: {fileID: 1774157886}
   m_Layer: 5
   m_Name: RoomBgImage
   m_TagString: Untagged
@@ -7487,6 +7506,47 @@ MonoBehaviour:
   parent: {fileID: 362444928}
   roomListSlot: {fileID: 6505225133082625729, guid: ad946a2b9a8c75946a7edbc491356de9, type: 3}
   contents: {fileID: 362444927}
+  PV: {fileID: 0}
+--- !u!114 &1774157886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774157880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1774157887}
+  - {fileID: 362444931}
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1774157887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774157880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &1775646267
 GameObject:
   m_ObjectHideFlags: 0
