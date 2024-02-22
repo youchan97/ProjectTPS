@@ -29,6 +29,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public static string nick;
     public static int characterNum;
 
+    byte maxPlayers;
+
     private void Awake()
     {
         if (Instance == null)
@@ -68,12 +70,11 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         if (roomNameInput.text.Length > 0)
         {
-            byte maxPlayers = byte.Parse(setNumPlayerDropDown.options[setNumPlayerDropDown.value].text); // 드롭다운에서 값 얻어오기.
+            maxPlayers = byte.Parse(setNumPlayerDropDown.options[setNumPlayerDropDown.value].text); // 드롭다운에서 값 얻어오기.
 
             RoomOptions roomOptions = new RoomOptions();
             roomOptions.MaxPlayers = maxPlayers; // 드롭다운에서 선택한 인원수
             PhotonNetwork.CreateRoom(roomNameInput.text, roomOptions);//방이름과 인원수
-            roomListUI.PV.RPC("AddRoom", RpcTarget.All, maxPlayers, roomNameInput.text);
             ButtonManager.Instance.RoomOpenButton();
         }
         else
@@ -135,6 +136,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     //아무방이나 들어가려 했는데 없을 때 호출되는 함수
     public override void OnJoinedRoom()
     {
+        roomListUI.AddRoom(maxPlayers, roomNameInput.text);
         Debug.Log(PhotonNetwork.CurrentRoom.Name + "이름의 방에 들어옴" + "\r\n" +
                   PhotonNetwork.LocalPlayer.NickName + "이 방에 들어왔음");
        // SceneManager.LoadScene("02. Lobby");

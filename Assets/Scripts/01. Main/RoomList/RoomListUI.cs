@@ -10,18 +10,14 @@ public class RoomListUI : MonoBehaviourPun
     public Transform parent;
     public RoomListSlot roomListSlot;
     public GameObject contents;
-    public PhotonView PV;
+    public GameObject roomList;
 
-    private void Awake()
-    {
-        PV = photonView;
-    }
-
-    [PunRPC]
     public void AddRoom(int maxPlayers, string roomNameInput)
     {
         roomListSlot.SetRoom(maxPlayers, roomNameInput);
         RoomListSlot[] slots = contents.GetComponentsInChildren<RoomListSlot>();
-        roomListSlot = Instantiate(roomListSlotPrefab, parent).GetComponent<RoomListSlot>();
+        roomList = PhotonNetwork.Instantiate(roomListSlotPrefab.name, parent.position, parent.rotation);
+        roomList.transform.SetParent(parent);
+
     }
 }
