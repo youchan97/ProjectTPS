@@ -33,7 +33,7 @@ public class Player : MonoBehaviour, IHitable
     public float playerHp;
     public float playerMaxHp;
     public float getAbleRadius;
-    public static readonly int getLayer = 1 << 7;
+    public const int getLayer = 1 << 7;
     public GameObject hasGunObject;
     public Collider[] cols;
     //Playerdata data;
@@ -51,6 +51,7 @@ public class Player : MonoBehaviour, IHitable
     InputAction farmAction;
     InputAction sitAction;
     InputAction proneAction;
+    InputAction healAction;
 
     public List<HealItem> healItems;
 
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour, IHitable
         reloadAction = playerInput.actions["Reload"];
         sitAction = playerInput.actions["Sit"];
         proneAction = playerInput.actions["Prone"];
+        healAction = playerInput.actions["Heal"];
     }
     private void Start()
     {
@@ -94,18 +96,19 @@ public class Player : MonoBehaviour, IHitable
         isSit = false;
         isProne = false;
         isShoot = shootAction.triggered;
+        playerHp = 100;
+        playerMaxHp = 200;
     }
 
     private void Update()
     {
         curState = curState.UpdateState();
         cols = Physics.OverlapSphere(transform.position, 5, getLayer);
-        if(farmAction.triggered)
+        if(farmAction.triggered && cols.Length > 0)
         {
             anim.SetTrigger("Farm");
-            Farm();
         }
-        if(reloadAction.triggered)
+        if(reloadAction.triggered && playerGun.BulletCount < playerGun.maxBulletCount)
         {
             anim.SetTrigger("Reload");
         }
@@ -113,11 +116,18 @@ public class Player : MonoBehaviour, IHitable
         {
             isSit = isSit? false : true;
             anim.SetBool("IsSit", isSit);
+            anim.SetBool("IsProne", false);
         }
         if(proneAction.triggered)
         {
             isProne = isProne? false : true;
             anim.SetBool("IsProne", isProne);
+            anim.SetBool("IsSit", false);
+        }
+        if(healAction.triggered && healItems.Count > 0)
+        {
+            healItems[0].Use(this);
+            Debug.Log(Hp);
         }
     }
 
@@ -139,32 +149,10 @@ public class Player : MonoBehaviour, IHitable
     }
 
     public void Farm()
-    {       
-        if (cols.Length > 0 && playerGun == null)
+    {
+        if (cols[0].TryGetComponent(out IGetable getable))
         {
-            if (cols[0].TryGetComponent(out IGetable getable))
-            {
-                getable.Get(this);
-                playerGun.gameObject.transform.position = hasGunObject.transform.position;
-                playerGun.gameObject.transform.rotation = hasGunObject.transform.rotation;
-            }
-        }
-        else if(cols.Length > 0 && playerGun != null)
-        {
-            if (cols[0].TryGetComponent(out IGetable getable))
-            {
-                playerGun.gameObject.transform.SetParent(null);
-                playerGun.gameObject.transform.SetLocalPositionAndRotation(new Vector3(this.gameObject.transform.position.x,0.3f, this.gameObject.transform.position.z + 3), this.gameObject.transform.rotation);
-                playerGun.Throw();
-                playerGun = null;
-                getable.Get(this);
-                playerGun.gameObject.transform.position = hasGunObject.transform.position;
-                playerGun.gameObject.transform.rotation = hasGunObject.transform.rotation;
-            }
-        }
-        else
-        {
-            Debug.Log("주울게 없음");
+            getable.Get(this);
         }
     }
 }

@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class HealItem : MonoBehaviour, IGetable
 {
-    public int healValue;
+    int healValue = 30;
 
 
     public void Use(Player player)
     {
-        player.playerHp += healValue;
+        player.Hp += healValue;
+        player.healItems.Remove(this);
     }
 
     public void Get(Player player)
     {
         player.healItems.Add(this);
+        this.GetComponent<MeshCollider>().enabled = false;
+        this.GetComponent<MeshRenderer>().enabled = false;
     }
 }

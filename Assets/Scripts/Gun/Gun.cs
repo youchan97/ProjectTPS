@@ -1,3 +1,4 @@
+using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
     protected int bulletCount;//ÃÑ¾Ë
     public int maxBulletCount;//ÃÖ´ë º¸À¯ ÃÑ¾Ë
     protected int remainBulletCount;//¿©ºÐ ÃÑ¾Ë
+    public int oneBulletCartridge; // ÇÑÅºÃ¢ ÃÑ¾Ë
     public GunStrategy gunStrategy;
     public GameObject bulletLine;
     [SerializeField]
@@ -68,11 +70,20 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
 
     public void Get(Player player)
     {
+        if(player.playerGun != null)
+        {
+            player.playerGun.gameObject.transform.SetParent(null);
+            player.playerGun.gameObject.transform.SetLocalPositionAndRotation(new Vector3(this.gameObject.transform.position.x, 0.3f, this.gameObject.transform.position.z + 3), this.gameObject.transform.rotation);
+            player.playerGun.Throw();
+            player.playerGun = null;
+        }
         this.gameObject.transform.parent = player.hasGunObject.transform;
         this.gameObject.GetComponent<MeshCollider>().enabled = false;
         player.playerGun = this;
         //aim.enabled = true;
         gunStrategy.ownerPlayer = player;
+        this.gameObject.transform.position = player.hasGunObject.transform.position;
+        this.gameObject.transform.rotation = player.hasGunObject.transform.rotation;
     }
 
     public void Throw()

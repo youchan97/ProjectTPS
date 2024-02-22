@@ -147,8 +147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   attackRange: 10
-  bulletCount: 0
-  maxBulletCount: 0
+  bulletCount: 20
+  maxBulletCount: 20
+  oneBulletCartridge: 20
   bulletLine: {fileID: 819566024279473823}
   aim: {fileID: 1642155026392083511, guid: ceb5e4cc1832f9346922b619b8055165, type: 3}
 --- !u!64 &-8473961860532381501
