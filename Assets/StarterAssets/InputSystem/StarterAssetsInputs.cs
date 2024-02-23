@@ -13,6 +13,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		Player player;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -21,8 +22,12 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+        private void Start()
+        {
+            player = GetComponent<Player>();
+        }
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -37,7 +42,13 @@ namespace StarterAssets
 
 		public void OnJump(InputValue value)
 		{
-			JumpInput(value.isPressed);
+			if (player.isSit || player.isProne)
+				return;
+			else
+			{
+				Debug.Log("มกวม");
+				JumpInput(value.isPressed);
+			}
 		}
 
 		public void OnSprint(InputValue value)

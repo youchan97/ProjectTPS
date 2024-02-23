@@ -49,7 +49,7 @@ public class Player : MonoBehaviour, IHitable
     [HideInInspector]
     public InputAction reloadAction;
     InputAction farmAction;
-    InputAction sitAction;
+    public InputAction sitAction;
     InputAction proneAction;
     InputAction healAction;
 
@@ -112,12 +112,12 @@ public class Player : MonoBehaviour, IHitable
         {
             anim.SetTrigger("Reload");
         }
-        if(sitAction.triggered)
+       /* if(sitAction.triggered)
         {
             isSit = isSit? false : true;
             anim.SetBool("IsSit", isSit);
             anim.SetBool("IsProne", false);
-        }
+        }*/
         if(proneAction.triggered)
         {
             isProne = isProne? false : true;

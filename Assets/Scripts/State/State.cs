@@ -39,6 +39,29 @@ public class IdleState : State
         {
             return new ShootState(player);
         }
+        if(player.sitAction.triggered)
+            return new SitState(player);
+        return this;
+    }
+}
+public class SitState : State
+{
+    public SitState(Player player) : base(player)
+    {
+        player.sa.jump = false;
+        player.isSit = true;
+    }
+    public override State UpdateState()
+    {
+        Debug.Log("╬и╠Б ╩Себ");   
+        player.anim.SetBool("IsSit", true);
+        player.anim.SetBool("IsProne", false);
+        if (player.sitAction.triggered)
+        {
+            player.isSit = false;
+            player.anim.SetBool("IsSit", false);
+            return new IdleState(player);
+        }
         return this;
     }
 }
