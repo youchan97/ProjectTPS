@@ -21,7 +21,7 @@ public abstract class GunStrategy
         if(gun.BulletCount > 0)
         {
             Transform camTransform = Camera.main.transform;
-            ownerPlayer.transform.forward = camTransform.forward;
+            ownerPlayer.transform.forward = Vector3.Lerp(ownerPlayer.transform.forward,camTransform.forward, Time.deltaTime * 300);
             ownerPlayer.anim.SetBool("IsShoot", true);
             Physics.Raycast(camTransform.position, camTransform.forward, out hit, gun.attackRange);
             GameObject bulletEffect = PoolManager.Instance.UseObject();
@@ -81,6 +81,7 @@ public class RifleStrategy : GunStrategy
         else
         {
             Debug.Log("¡‹");
+            ownerPlayer.zoomCam.gameObject.transform.position -= Vector3.forward * 4;
             isZoom = true;
         }
     }

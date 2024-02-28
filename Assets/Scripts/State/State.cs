@@ -139,6 +139,7 @@ public class ShootState : State
     {
         if(player.shootAction.triggered)
         {
+            Debug.Log("╫╦ ╩Себ");
             player.playerGun.gunStrategy.Shoot();
         }
         return this;

@@ -24,8 +24,7 @@ public class Player : MonoBehaviour, IHitable
     public ThirdPersonController tpController;
     public Animator anim;
     public GameObject cam;
-    public CinemachineVirtualCamera rifleZoomCam;
-    public CinemachineVirtualCamera sniperZoomCam;
+    public CinemachineVirtualCamera zoomCam;
     public bool isShoot;
     public bool isSit;
     public bool isProne;
