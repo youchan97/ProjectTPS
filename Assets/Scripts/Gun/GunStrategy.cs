@@ -9,18 +9,19 @@ public abstract class GunStrategy
     protected Gun gun;
     public Player ownerPlayer;
     RaycastHit hit;
+    public Transform camTransform;
     public abstract void Shoot();
 
     public GunStrategy(Gun gun)
     {
         this.gun = gun;
+        camTransform = Camera.main.transform;
     }
 
     public virtual void ClickShoot()
     {
         if(gun.BulletCount > 0)
         {
-            Transform camTransform = Camera.main.transform;
             ownerPlayer.transform.forward = Vector3.Lerp(ownerPlayer.transform.forward,camTransform.forward, Time.deltaTime * 300);
             ownerPlayer.anim.SetBool("IsShoot", true);
             Physics.Raycast(camTransform.position, camTransform.forward, out hit, gun.attackRange);
