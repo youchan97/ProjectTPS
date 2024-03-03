@@ -1579,11 +1579,11 @@ MonoBehaviour:
   m_Spacing: 3
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
+  m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
+  m_ReverseArrangement: 1
 --- !u!114 &362444931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,7 +1598,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
   m_UseLocal: 1
 --- !u!1 &390265191
 GameObject:
@@ -5588,7 +5588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1319118506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7504,7 +7504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomListSlotPrefab: {fileID: 2612004633540432144, guid: 4e9067283260026499735b35cdfe548f, type: 3}
   parent: {fileID: 362444928}
-  roomListSlot: {fileID: 6505225133082625729, guid: ad946a2b9a8c75946a7edbc491356de9, type: 3}
+  roomListSlot: {fileID: 6505225133082625729, guid: 4e9067283260026499735b35cdfe548f, type: 3}
   contents: {fileID: 362444927}
   roomList: {fileID: 2612004633540432144, guid: 4e9067283260026499735b35cdfe548f, type: 3}
 --- !u!114 &1774157886

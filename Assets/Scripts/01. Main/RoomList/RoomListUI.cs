@@ -16,8 +16,7 @@ public class RoomListUI : MonoBehaviourPun
     {
         roomListSlot.SetRoom(maxPlayers, roomNameInput);
         RoomListSlot[] slots = contents.GetComponentsInChildren<RoomListSlot>();
-        roomList = PhotonNetwork.Instantiate(roomListSlotPrefab.name, parent.position, parent.rotation);
+        roomList = PhotonNetwork.Instantiate(roomListSlotPrefab.name, Vector3.zero, Quaternion.identity);
         roomList.transform.SetParent(parent);
-
     }
 }
