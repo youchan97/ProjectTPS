@@ -5,16 +5,25 @@ using UnityEngine;
 public class Rifle : Gun
 {
     bool isZoom;
+	bool isAutoShot;
     private void Start()
     {
         gunStrategy = new RifleStrategy(this);
         isZoom = false;
+		isAutoShot = false;
     }
 
     private void Update()
     {
-        if(gunStrategy.ownerPlayer != null && gunStrategy.ownerPlayer.zoomAction.triggered)
-            Zoom();
+		if (gunStrategy.ownerPlayer != null)
+		{
+			if(gunStrategy.ownerPlayer.zoomAction.triggered)
+				Zoom();
+			if (gunStrategy.ownerPlayer.changeShootAction.triggered)
+				isAutoShot = isAutoShot ? false : true;
+			if (gunStrategy.ownerPlayer.shootAction.triggered)
+				gunStrategy.Shoot();
+		}
     }
 
     public void Zoom()

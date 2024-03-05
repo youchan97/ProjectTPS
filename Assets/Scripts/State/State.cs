@@ -35,10 +35,10 @@ public class IdleState : State
             return new JumpState(player);
         if(player.sa.sprint)
             return new SprintState(player);
-        if (player.shootAction.triggered && player.playerGun != null)
+        /*if (player.shootAction.triggered && player.playerGun != null)
         {
             return new ShootState(player);
-        }
+        }*/
         if(player.sitAction.triggered)
             return new SitState(player);
         return this;
@@ -80,10 +80,10 @@ public class MoveState : State
             return new JumpState(player);
         if (player.sa.sprint)
             return new SprintState(player);
-        if (player.shootAction.triggered && player.playerGun != null)
+        /*if (player.shootAction.triggered && player.playerGun != null)
         {
             return new ShootState(player);
-        }
+        }*/
         return this;
     }
 }
@@ -127,7 +127,7 @@ public class SprintState : State
     }
 }
 
-public class ShootState : State
+/*public class ShootState : State
 {
     
     
@@ -144,5 +144,5 @@ public class ShootState : State
         }
         return this;
     }
-}
+}*/
 

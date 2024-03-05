@@ -102,27 +102,8 @@ public class RifleStrategy : GunStrategy
     }
     public override void Shoot()
     {
-        if(ownerPlayer.zoomAction.triggered)
-        {
-            Zoom();
-        }
-        if (ownerPlayer.changeShootAction.triggered)
-        {
-            ChangeShoot();
-        }
-
-        if (isAuto)
-        {
-            
-        }
-        else
-        {
-            if(ownerPlayer.shootAction.triggered)
-            {
-                base.ClickShoot();
-                Debug.Log("½ú´Ù");
-            }
-        }
+        base.ClickShoot();
+        Debug.Log("½ú´Ù");
     }
 }
 public class SnipeStrategy : GunStrategy
