@@ -55,6 +55,11 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+		public void OnShoot(InputValue value)
+		{
+			Debug.Log(value.isPressed);
+		}
 #endif
 
 

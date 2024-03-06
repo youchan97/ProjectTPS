@@ -25,7 +25,6 @@ public class Player : MonoBehaviour, IHitable
     public Animator anim;
     public GameObject cam;
     public CinemachineVirtualCamera zoomCam;
-    public bool isShoot;
     public bool isSit;
     public bool isProne;
     public Gun playerGun;
@@ -42,12 +41,11 @@ public class Player : MonoBehaviour, IHitable
     [HideInInspector]
     public InputAction changeShootAction;
     [HideInInspector]
-    public InputAction autoShootAction;
-    [HideInInspector]
     public InputAction shootAction;
     [HideInInspector]
     public InputAction reloadAction;
     InputAction farmAction;
+    [HideInInspector]
     public InputAction sitAction;
     InputAction proneAction;
     InputAction healAction;
@@ -72,6 +70,9 @@ public class Player : MonoBehaviour, IHitable
                 
         }
     }
+    
+
+
 
     private void Awake()
     {
@@ -79,11 +80,15 @@ public class Player : MonoBehaviour, IHitable
         sa = GetComponent<StarterAssetsInputs>();
         tpController = GetComponent<ThirdPersonController>();
         anim = GetComponent<Animator>();
+        InputInitialize();
+    }
+
+    public void InputInitialize()
+    {
         farmAction = playerInput.actions["Farm"];
         zoomAction = playerInput.actions["Zoom"];
         changeShootAction = playerInput.actions["ChangeShoot"];
         shootAction = playerInput.actions["Shoot"];
-        autoShootAction = playerInput.actions["AutoShoot"];
         reloadAction = playerInput.actions["Reload"];
         sitAction = playerInput.actions["Sit"];
         proneAction = playerInput.actions["Prone"];
@@ -94,7 +99,6 @@ public class Player : MonoBehaviour, IHitable
         curState = new IdleState(this);
         isSit = false;
         isProne = false;
-        isShoot = shootAction.triggered;
         playerHp = 100;
         playerMaxHp = 200;
     }
@@ -111,7 +115,7 @@ public class Player : MonoBehaviour, IHitable
         {
             anim.SetTrigger("Reload");
         }
-       /* if(sitAction.triggered)
+        /* if(sitAction.triggered)
         {
             isSit = isSit? false : true;
             anim.SetBool("IsSit", isSit);
@@ -130,9 +134,15 @@ public class Player : MonoBehaviour, IHitable
         }
     }
 
+    void StartReLoad()
+    {
+        playerInput.SwitchCurrentActionMap("ReLoad");
+    }
+
     public void GunReLoad()
     {
         playerGun.BulletCount = playerGun.maxBulletCount;
+        playerInput.SwitchCurrentActionMap("Player");
     }
 
 

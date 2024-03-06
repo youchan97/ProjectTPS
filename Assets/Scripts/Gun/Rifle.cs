@@ -1,16 +1,18 @@
+using ExitGames.Client.Photon.StructWrapping;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Rifle : Gun
 {
     bool isZoom;
-	bool isAutoShot;
+	bool isAutoShoot;
     private void Start()
     {
         gunStrategy = new RifleStrategy(this);
         isZoom = false;
-		isAutoShot = false;
+        isAutoShoot = false;
     }
 
     private void Update()
@@ -19,11 +21,29 @@ public class Rifle : Gun
 		{
 			if(gunStrategy.ownerPlayer.zoomAction.triggered)
 				Zoom();
-			if (gunStrategy.ownerPlayer.changeShootAction.triggered)
-				isAutoShot = isAutoShot ? false : true;
+            if (gunStrategy.ownerPlayer.changeShootAction.triggered)
+                ChangeShoot();
 			if (gunStrategy.ownerPlayer.shootAction.triggered)
 				gunStrategy.Shoot();
 		}
+    }
+
+    void ChangeShoot()
+    {
+        Debug.Log(gunStrategy.ownerPlayer.playerInput.currentActionMap);
+        isAutoShoot = isAutoShoot ? false : true;
+        Debug.Log(isAutoShoot);
+        if (isAutoShoot)
+        {
+            gunStrategy.ownerPlayer.playerInput.SwitchCurrentActionMap("AutoShoot");
+            gunStrategy.ownerPlayer.InputInitialize();
+        }
+        else
+        {
+            gunStrategy.ownerPlayer.playerInput.SwitchCurrentActionMap("Player");
+            gunStrategy.ownerPlayer.InputInitialize();
+        }
+        Debug.Log(gunStrategy.ownerPlayer.playerInput.currentActionMap);
     }
 
     public void Zoom()
@@ -31,9 +51,7 @@ public class Rifle : Gun
         if (isZoom)
         {
             Debug.Log("¡‹ «Æ±‚");
-
             gunStrategy.ownerPlayer.zoomCam.Priority = 9;
-            
             isZoom = false;
         }
         else

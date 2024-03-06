@@ -671,7 +671,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Sit and Prone
+    m_Name: Sit
     m_StateMachine: {fileID: 2718379952402943010}
     m_Mask: {fileID: 31900000, guid: 9ff738ddf73febb49ad2dfa966b24af7, type: 2}
     m_Motions: []
@@ -932,7 +932,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sit and Prone
+  m_Name: Sit
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7171623616171939014}

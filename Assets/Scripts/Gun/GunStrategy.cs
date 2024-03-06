@@ -66,44 +66,19 @@ public class ShotGunStrategy : GunStrategy
 }
 public class RifleStrategy : GunStrategy
 {
-    bool isZoom = false;
-    bool isAuto = false;
+    bool isAuto;
     public RifleStrategy(Gun gun) : base(gun)
     {
-    }
-
-    public void Zoom()
-    {
-        if (isZoom)
-        {
-            Debug.Log("ÁÜ Ç®±â");
-            isZoom = false;
-        }
-        else
-        {
-            Debug.Log("ÁÜ");
-            ownerPlayer.zoomCam.gameObject.transform.position -= Vector3.forward * 4;
-            isZoom = true;
-        }
-    }
-
-    public void ChangeShoot()
-    {
-        if (isAuto)
-        {
-            Debug.Log("´Ü¹ß");
-            isAuto = false;
-        }
-        else
-        {
-            Debug.Log("¿¬¹ß");
-            isAuto = true;
-        }
+        isAuto = false;
     }
     public override void Shoot()
     {
         base.ClickShoot();
-        Debug.Log("½ú´Ù");
+        AutoShoot();
+    }
+    public void AutoShoot()
+    {
+        Debug.Log(ownerPlayer.shootAction.triggered);
     }
 }
 public class SnipeStrategy : GunStrategy
