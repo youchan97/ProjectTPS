@@ -798,8 +798,8 @@
                     "id": "03892618-e250-4932-9f2c-5329b3894a8d",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": true
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Sprint",

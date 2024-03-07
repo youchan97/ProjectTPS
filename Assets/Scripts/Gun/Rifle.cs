@@ -1,4 +1,5 @@
 using ExitGames.Client.Photon.StructWrapping;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ using UnityEngine.InputSystem;
 public class Rifle : Gun
 {
     bool isZoom;
-	bool isAutoShoot;
     private void Start()
     {
         gunStrategy = new RifleStrategy(this);
@@ -23,9 +23,16 @@ public class Rifle : Gun
 				Zoom();
             if (gunStrategy.ownerPlayer.changeShootAction.triggered)
                 ChangeShoot();
-			if (gunStrategy.ownerPlayer.shootAction.triggered)
+			if (gunStrategy.ownerPlayer.shootAction.triggered && !isAutoShoot)
 				gunStrategy.Shoot();
-		}
+            if(isAutoShoot)
+                gunStrategy.ownerPlayer.anim.SetBool("IsAutoShoot", gunStrategy.ownerPlayer.playerGun.isShoot);
+        }
+    }
+
+    void AutoShoot()
+    {
+
     }
 
     void ChangeShoot()

@@ -19,6 +19,8 @@ public class Gun : MonoBehaviour, IAttackable, IGetable, IThrowable
     public GameObject bulletLine;
     [SerializeField]
     private Image aim;
+    public bool isAutoShoot;
+    public bool isShoot = false;
 
     public int BulletCount
     {

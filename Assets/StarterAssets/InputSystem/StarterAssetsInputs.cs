@@ -13,6 +13,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool isShoot;
 		Player player;
 
 		[Header("Movement Settings")]
@@ -55,14 +56,9 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
-
-		public void OnShoot(InputValue value)
-		{
-			Debug.Log(value.isPressed);
-		}
 #endif
 
-
+		
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;

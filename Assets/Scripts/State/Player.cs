@@ -70,8 +70,18 @@ public class Player : MonoBehaviour, IHitable
                 
         }
     }
-    
 
+    public void OnShoot(InputValue value)
+    {
+        if (playerGun != null && playerGun.isAutoShoot)
+            ShootInput(value.isPressed);
+    }
+
+    public void ShootInput(bool newShoot)
+    {
+        playerGun.isShoot = newShoot;
+        Debug.Log(playerGun.isShoot);
+    }
 
 
     private void Awake()
