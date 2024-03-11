@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class RoomListUI : MonoBehaviourPun
+public class RoomListUI : MonoBehaviourPunCallbacks
 {
     public GameObject roomListSlotPrefab;
     public Transform parent;
